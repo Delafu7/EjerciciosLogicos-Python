@@ -1,0 +1,6 @@
+Peloso=1,Orco=1
+Peloso=2,Orco=1
+Peloso=3,Orco=1
+Peloso=4,Orco=1
+
+Los buenos ganaron 2, mientras que los malos ganaron 1
