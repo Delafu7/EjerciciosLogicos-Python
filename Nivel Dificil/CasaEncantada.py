@@ -26,8 +26,32 @@
 
 import random
 
-enigmas=["¿Qué es lo que tiene ojos y no puede ver?","¿Qué es lo que tiene dientes y no puede comer?","¿Qué es lo que tiene cabeza y no puede pensar?","¿Qué es lo que tiene corazón y no puede amar?"]
-respuestas=["una aguja","un peine","un huevo","un reloj"]
+
+enigmasRespuestas=[
+    {"enigma":"Cuanto más quitas, más grande es. ¿Qué es?","respuesta":"Un agujero"}, 
+    {"enigma":"Me rompo si me nombras. ¿Qué soy?","respuesta":"El silencio"},
+    {"enigma":"Tengo llaves pero no abro puertas. ¿Qué soy?","respuesta":"Un piano"}, 
+    {"enigma":"Vuelo sin alas, lloro sin ojos. ¿Qué soy?","respuesta":"Una nube"},
+    {"enigma":"Tiene dientes, pero no muerde. ¿Qué es?","respuesta":"Un peine"},
+    {"enigma":"Cuanto más crece, menos se ve. ¿Qué es?","respuesta":"La oscuridad"}, 
+    {"enigma":"Tiene cabeza, pero no piensa. ¿Qué es?","respuesta":"Un clavo"}, 
+    {"enigma":"Es más ligero que una pluma, pero ni el hombre más fuerte lo puede sostener por mucho tiempo. ¿Qué es?","respuesta":"La respiración"},
+    {"enigma":"Me ves en el agua, pero nunca me mojo. ¿Qué soy?","respuesta":"Un reflejo"},
+    {"enigma":"Tengo ciudades, pero no casas; tengo montañas, pero no árboles; tengo agua, pero no peces. ¿Qué soy","respuesta":"Un mapa"},
+    {"enigma":"Si me dices mi nombre, ya no existo. ¿Qué soy?","respuesta":"El secreto"},
+    {"enigma":"Puedo ser alto o bajo, gordo o flaco, pero siempre miento. ¿Qué soy?","respuesta":"Un mentiroso"},
+    {"enigma":"Tiene palabras, pero no habla. ¿Qué es?","respuesta":"Un libro"},
+    {"enigma":"Me tiras cuando me necesitas y me recoges cuando ya no me sirvo. ¿Qué soy?","respuesta":"Un ancla"},
+    {"enigma":"Cuanto más caliente estoy, más fresco te dejo. ¿Qué soy?","respuesta":"Un ventilador"},
+    {"enigma":"Tengo orejas, pero no puedo oír. ¿Qué soy?","respuesta":"Una taza"},
+    {"enigma":"Soy alto cuando soy joven y bajo cuando soy viejo. ¿Qué soy?","respuesta":"Una vela"},
+    {"enigma":"Brilla sin ser estrella y calienta sin ser fuego. ¿Qué es?","respuesta":"El sol"},
+    {"enigma":"Tiene una cabeza y una cola, pero no tiene cuerpo. ¿Qué es?","respuesta":"Una moneda"},
+    {"enigma":"Blanca por dentro, verde por fuera. Si quieres que te lo diga, espera.","respuesta":"La pera"},
+    {"enigma":"No es cama ni es león, y desaparece en cualquier rincón","respuesta":"El camaleón"},
+    {"enigma":"Me estiras y encojo, pero nunca reviento. ¿Qué soy?","respuesta":"Un elástico"},
+    {"enigma":"Todos me usan para beber, pero nadie me come. ¿Qué soy?","respuesta":"Un vaso"},{"enigma":"Cuando soy nuevo, soy alto. Cuando envejezco, me acorto. ¿Qué soy?","respuesta":"Un lápiz"}
+    ]
 
 def mostrarCasa(num:int,puerta:int,dulces:int,iPersona:int,jPersona:int):
     casa=[]
@@ -51,17 +75,17 @@ def mostrarCasa(num:int,puerta:int,dulces:int,iPersona:int,jPersona:int):
 
 def obtenerRespuestas(indexEnigma:int):
     respuestasPosibles=[]
-    respuestasPosibles.append(respuestas[indexEnigma])
+    respuestasPosibles.append(enigmasRespuestas[indexEnigma].get("respuesta"))
     while len(respuestasPosibles)<4:
-        respuesta=random.choice(respuestas)
+        respuesta=random.choice(enigmasRespuestas).get("respuesta")
         if respuesta not in respuestasPosibles:
             respuestasPosibles.append(respuesta)
     random.shuffle(respuestasPosibles)
     return respuestasPosibles
 
 def enigmaAceptado():
-    j=random.randint(0,len(enigmas)-1)
-    print("Enigma: ",enigmas[j])
+    j=random.randint(0,len(enigmasRespuestas)-1)
+    print("Enigma: ",enigmasRespuestas[j].get("enigma"))
     respuestasPosibles=obtenerRespuestas(j)
     for i in range(len(respuestasPosibles)):
         print(i+1,respuestasPosibles[i])
@@ -70,7 +94,7 @@ def enigmaAceptado():
         respuesta=int(respuesta)-1
     else:
         raise ValueError("La respuesta debe ser un número")
-    return respuestasPosibles[respuesta]==respuestas[j]
+    return respuestasPosibles[respuesta]== enigmasRespuestas[j].get("respuesta")
 
 def juegoCasaEncantada(num:int=4):
     print("Bienvenido a la casa encantada")
